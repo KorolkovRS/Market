@@ -14,5 +14,15 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     };
 
+    $scope.deleteProductById = function (id) {
+        console.log('deleteProduct' + id);
+        $http({
+            url: contextPath + '/products/delete/' + id,
+            method: 'DELETE'
+        }).then(function(response) {
+        $scope.fillTable();
+        });
+    };
+
     $scope.fillTable();
 });

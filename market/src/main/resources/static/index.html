@@ -23,12 +23,15 @@
         <tr>
             <td>Название</td>
             <td>Цена</td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="p in ProductsList">
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удалить продукт</button>
             </td>
         </tr>
         </tbody>
