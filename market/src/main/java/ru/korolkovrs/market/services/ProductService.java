@@ -33,4 +33,9 @@ public class ProductService {
     public void deleteProductById(Long id) {
         productRepository.deleteById(id);
     }
+
+    public List<Product> findProductsById(Integer minPrice, Integer maxPrice) {
+        return productRepository.findAllByPriceBetween(minPrice, maxPrice);
+    }
+
 }

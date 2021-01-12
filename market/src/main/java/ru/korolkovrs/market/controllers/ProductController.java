@@ -14,8 +14,14 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "20") Integer size) {
-        return productService.getAllProducts(page, size);
+    public List<Product> getAllProducts(
+            @RequestParam(defaultValue = "0") Integer min_price,
+            @RequestParam(required = false) Integer max_price
+    ) {
+        if (max_price == null) {
+            max_price = Integer.MAX_VALUE;
+        }
+        return productService.findProductsById(min_price, max_price);
     }
 
     @GetMapping("/{id}")
