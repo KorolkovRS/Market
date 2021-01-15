@@ -1,30 +1,29 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
-    const contextPath = 'http://localhost:8888/market';
-    $scope.productsPerPage = 5;
+    const contextPath = 'http://localhost:8888/market/api/v1';
 
-    $scope.fillTable = function () {
+    $scope.fillTable = function (pageIndex) {
         $http({
             url: contextPath + '/products',
             method: 'GET',
             params: {
+                title: $scope.filter ? $scope.filter.title : null,
                 min_price: $scope.filter ? $scope.filter.min_price : null,
-                max_price: $scope.filter ? $scope.filter.max_price : null
+                max_price: $scope.filter ? $scope.filter.max_price : null,
+                p: pageIndex
             }
         }).then(function (response) {
-            $scope.currentPage = 0;
-            $scope.ProductsList = response.data;
-            $scope.pageCounter = Math.ceil($scope.ProductsList.length / $scope.productsPerPage);
-            $scope.Products = $scope.ProductsList.slice($scope.currentPage * $scope.productsPerPage, ($scope.currentPage + 1) * $scope.productsPerPage);
-        });
+            $scope.currentPage = pageIndex;
+            $scope.ProductsPage = response.data;
+            $scope.PaginationArray = $scope.generatePagesIndex(1, $scope.ProductsPage.totalPages);
+            });
     };
 
         $scope.deleteProductById = function (id) {
-                console.log('deleteProduct' + id);
                 $http({
                     url: contextPath + '/products/delete/' + id,
                     method: 'DELETE'
                 }).then(function(response) {
-                $scope.fillTable();
+                $scope.fillTable($scope.currentPage);
                 });
             };
 
@@ -32,27 +31,17 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             $http.post(contextPath + '/products', $scope.newProduct)
                 .then(function (response) {
                     $scope.newProduct = null;
-                    $scope.fillTable();
+                    $scope.fillTable($scope.currentPage);
                 });
         };
 
-    $scope.nextPage = function () {
-        $scope.currentPage++;
-        $scope.Products = $scope.ProductsList.slice($scope.currentPage * $scope.productsPerPage, ($scope.currentPage + 1) * $scope.productsPerPage);
+    $scope.generatePagesIndex = function (startPage, endPage) {
+        let arr = [];
+        for (i = startPage; i < endPage + 1; i++) {
+            arr.push(i);
+        }
+        return arr;
      };
-
-    $scope.prevPage = function () {
-        $scope.currentPage--;
-        $scope.Products = $scope.ProductsList.slice($scope.currentPage * $scope.productsPerPage, ($scope.currentPage + 1) * $scope.productsPerPage);
-     };
-
-     $scope.firstPage = function () {
-        return $scope.currentPage <= 0;
-     }
-
-     $scope.lastPage = function () {
-        return $scope.currentPage >= $scope.pageCounter - 1;
-     }
 
     $scope.fillTable();
 });
