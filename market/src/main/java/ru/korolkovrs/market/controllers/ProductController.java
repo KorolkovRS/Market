@@ -11,7 +11,6 @@ import ru.korolkovrs.market.models.Product;
 import ru.korolkovrs.market.repositories.specifications.ProductSpecifications;
 import ru.korolkovrs.market.services.ProductService;
 
-import java.nio.file.ReadOnlyFileSystemException;
 
 @RestController
 @RequestMapping("api/v1/products")
