@@ -10,6 +10,7 @@ create table cart
 (
     id bigserial primary key,
     productId bigserial,
+    counter int,
     FOREIGN KEY (productId)  REFERENCES products (id)
 );
 
@@ -29,7 +30,7 @@ insert into products(title, price) values
   ('Potato', 20),
   ('Orange', 140);
 
- insert into cart(productId) values
-    (3),
-    (5),
-    (10);
+ insert into cart(productId, count) values
+    (3, 1),
+    (5, 6),
+    (10, 3);
