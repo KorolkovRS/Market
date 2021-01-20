@@ -3,10 +3,15 @@ package ru.korolkovrs.market.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import ru.korolkovrs.market.dto.ProductDTO;
+import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.Product;
+import ru.korolkovrs.market.repositories.specifications.ProductSpecifications;
 import ru.korolkovrs.market.services.ProductService;
+
+import java.nio.file.ReadOnlyFileSystemException;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -16,21 +21,21 @@ public class ProductController {
 
     @GetMapping
     public Page<ProductDTO> getAllProducts(
-            @RequestParam(name = "min_price", defaultValue = "0") Integer min_price,
-            @RequestParam(name = "max_price", required = false) Integer max_price,
-            @RequestParam(name = "title", required = false) String title,
+            @RequestParam MultiValueMap<String, String> params,
             @RequestParam(name = "p", defaultValue = "1") Integer page,
             @RequestParam(name = "productsAtTitle", defaultValue = "5") Integer size
     ) {
         if (page < 1) {
             page = 1;
         }
-        return productService.getAllProducts(page - 1, size);
+        return productService.getAllProducts(ProductSpecifications.build(params), page - 1, size);
+//        return productService.getAllProducts(page - 1, size);
     }
 
     @GetMapping("/{id}")
     public ProductDTO getProductById(@PathVariable Long id) {
-        return productService.getProductById(id).get();
+        return productService.getProductById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product with id " + id + " doesn't exist"));
     }
 
     @PostMapping
