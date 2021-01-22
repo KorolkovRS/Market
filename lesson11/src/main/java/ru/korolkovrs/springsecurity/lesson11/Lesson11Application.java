@@ -1,12 +1,13 @@
-package ru.korolkovrs.market;
+package ru.korolkovrs.springsecurity.lesson11;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MarketApplication {
+public class Lesson11Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MarketApplication.class, args);
+		SpringApplication.run(Lesson11Application.class, args);
 	}
+
 }
