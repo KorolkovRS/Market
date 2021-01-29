@@ -1,31 +1,29 @@
 package ru.korolkovrs.market.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.korolkovrs.market.dto.ProductDTO;
 import ru.korolkovrs.market.models.Product;
 import ru.korolkovrs.market.repositories.ProductRepository;
+import ru.korolkovrs.market.repositories.specifications.ProductSpecifications;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Page<ProductDTO> getAllProducts(Integer page, Integer size) {
-        Page<Product> productPage = productRepository.findAll(PageRequest.of(page, size));
-        Page<ProductDTO> productDTOPage = new PageImpl<>(
-                productPage.getContent().stream().map(ProductDTO::new).collect(Collectors.toList()),
-                productPage.getPageable(),
-                productPage.getTotalElements()
-        );
-        return productDTOPage;
+    public Page<ProductDTO> getAllProducts(Specification<Product> spec, Integer page, Integer size) {
+        return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
     public List<Product> getAllProducts() {
