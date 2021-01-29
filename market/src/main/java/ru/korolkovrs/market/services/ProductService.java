@@ -26,9 +26,6 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
 
     public Optional<ProductDTO> getProductById(Long id) {
         return productRepository.findById(id).map(ProductDTO::new);

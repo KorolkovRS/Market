@@ -28,7 +28,6 @@ public class ProductController {
             page = 1;
         }
         return productService.getAllProducts(ProductSpecifications.build(params), page - 1, size);
-//        return productService.getAllProducts(page - 1, size);
     }
 
     @GetMapping("/{id}")

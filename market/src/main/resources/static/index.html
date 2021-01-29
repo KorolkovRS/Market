@@ -51,6 +51,11 @@
         <tr ng-repeat="p in ProductsPage.content">
             <td>{{p.title}}</td>
             <td>{{p.price}}</td>
+
+            <td>
+                <button class="btn btn-primary" ng-click="addToCart(p.id)">Добавить в корзину</button>
+            </td>
+
             <td>
                 <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удалить продукт</button>
             </td>
@@ -67,6 +72,32 @@
     </nav>
 
 <!--    <span>Страница {{currentPage}} из {{pageCounter}}</span>-->
+
+    <br> <h3>Корзина</h3>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td>Название</td>
+            <td>Количество</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cart in Cart.items">
+            <td>{{cart.productTitle}}</td>
+            <td>{{cart.quantity}}</td>
+            <td>{{cart.quantity + ' x ' + cart.pricePerProduct + ' = ' + cart.price}}</td>
+<!--            <td>-->
+<!--                <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удалить продукт</button>-->
+<!--            </td>-->
+        </tr>
+        <td>Итого</td>
+        <td></td>
+        <td>{{cart.totalPrice}}</td>
+        </tbody>
+    </table>
+    <button class="btn btn-danger" ng-click="clearCart()">Очистить корзину</button>
 
     <br> <h3>Добавить новый товар</h3>
     <form novalidate ng-submit="submitCreateNewProduct()">
