@@ -66,6 +66,13 @@ $scope.clearCart = function () {
             });
     }
 
+$scope.decProduct = function (productId) {
+        $http.get(contextPath + '/carts/delete/' + productId)
+            .then(function (response) {
+                $scope.showCart();
+            });
+    }
+
     $scope.fillTable();
 });
 

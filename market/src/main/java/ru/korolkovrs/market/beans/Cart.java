@@ -38,9 +38,22 @@ public class Cart {
         }
         OrderItem orderItem = orderItemService.saveOrUpdateOrderItem(new OrderItem(productRepository.
                 findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " doesn't exist"))));
-//        OrderItem orderItem = new OrderItem(productRepository.findById(id).get());
         items.add(orderItem);
         recalculate();
+    }
+
+    public void deleteProduct(Long id) {
+        for (OrderItem item : items) {
+            if (item.getProduct().getId().equals(id)) {
+                item.decrementQuantity();
+                if (item.getQuantity() == 0) {
+                    items.remove(item);
+                }
+                recalculate();
+                return;
+            }
+        }
+//        items.removeIf(i -> i.getId().equals(id));
     }
 
     public void clearAll() {

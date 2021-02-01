@@ -24,11 +24,18 @@ public class CartController {
 
     @GetMapping("/add/{id}")
     public void addProductById(@PathVariable Long id) {
+        System.out.println("add " + id);
         cart.addProduct(id);
     }
 
     @GetMapping("/clear")
     public void clearCart() {
         cart.clearAll();
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deleteProductById(@PathVariable Long id) {
+        System.out.println("delete " + id);
+        cart.deleteProduct(id);
     }
 }
