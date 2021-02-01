@@ -1,31 +1,34 @@
 package ru.korolkovrs.market.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
-import ru.korolkovrs.market.dto.ProductDTO;
-import ru.korolkovrs.market.models.Cart;
-import ru.korolkovrs.market.services.CartService;
-import ru.korolkovrs.market.services.ProductService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.korolkovrs.market.beans.Cart;
+import ru.korolkovrs.market.dto.CartDTO;
+import ru.korolkovrs.market.models.OrderItem;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "carts")
+@RequestMapping("/api/v1/carts")
 @RequiredArgsConstructor
 public class CartController {
-    private final CartService cartService;
-//    private final ProductService productService;
+    private final Cart cart;
 
     @GetMapping
-    public List<Cart> getAllCarts() {
-        System.out.println("mapw");
-        return cartService.getAllCarts();
+    public CartDTO getCart() {
+        return new CartDTO(cart);
     }
 
-    @PostMapping
-    public Cart saveCart(@RequestBody Cart cart) {
-        return cartService.saveCart(cart);
+    @GetMapping("/add/{id}")
+    public void addProductById(@PathVariable Long id) {
+        cart.addProduct(id);
+    }
+
+    @GetMapping("/clear")
+    public void clearCart() {
+        cart.clearAll();
     }
 }

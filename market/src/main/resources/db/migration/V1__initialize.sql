@@ -6,12 +6,14 @@ create table products (
     updated_at timestamp default current_timestamp
    );
 
-create table cart
+create table order_items
 (
     id bigserial primary key,
-    productId bigserial,
-    counter int,
-    FOREIGN KEY (productId)  REFERENCES products (id)
+    product_id bigserial,
+    quantity int,
+    price int,
+    price_per_product int,
+    FOREIGN KEY (product_id)  REFERENCES products (id)
 );
 
 insert into products(title, price) values
@@ -29,8 +31,8 @@ insert into products(title, price) values
   ('Grape', 130),
   ('Potato', 20),
   ('Orange', 140);
-
- insert into cart(productId, count) values
-    (3, 1),
-    (5, 6),
-    (10, 3);
+--
+-- insert into cart(productId, count) values
+--    (3, 1),
+--    (5, 6),
+--    (10, 3);
