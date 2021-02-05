@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.OrderItem;
 import ru.korolkovrs.market.repositories.ProductRepository;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@SessionScope
 @RequiredArgsConstructor
 @Data
 public class Cart {
