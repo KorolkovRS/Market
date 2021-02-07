@@ -2,13 +2,12 @@ package ru.korolkovrs.market.beans;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.OrderItem;
-import ru.korolkovrs.market.repositories.ProductRepository;
-import ru.korolkovrs.market.services.OrderItemService;
+import ru.korolkovrs.market.models.Product;
+import ru.korolkovrs.market.services.ProductService;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -19,9 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Data
 public class Cart {
-    private final ProductRepository productRepository;
-    @Autowired
-    private OrderItemService orderItemService;
+    private final ProductService productService;
     private  List<OrderItem> items;
     private Integer totalPrice;
 
@@ -38,9 +35,9 @@ public class Cart {
                 return;
             }
         }
-        OrderItem orderItem = orderItemService.saveOrUpdateOrderItem(new OrderItem(productRepository.
-                findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " doesn't exist"))));
-        items.add(orderItem);
+        Product product = productService.findProductsById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Product with id " + id + " doesn't exist"));
+        items.add(new OrderItem(product));
         recalculate();
     }
 
@@ -55,7 +52,6 @@ public class Cart {
                 return;
             }
         }
-//        items.removeIf(i -> i.getId().equals(id));
     }
 
     public void clearAll() {

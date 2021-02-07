@@ -1,7 +1,8 @@
-angular.module('app', []).controller('indexController', function ($scope, $http) {
+angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:8888/market';
     $scope.authorized = false;
     $scope.currentUser;
+    $scope.repeatPassword;
 
     $scope.fillTable = function (pageIndex) {
         $http({
@@ -80,16 +81,76 @@ $scope.decProduct = function (productId) {
                 .then(function successCallback(response) {
                     if (response.data.token) {
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                        $scope.currentUser = $scope.user.username;
+
+                        $localStorage.marketUsername = $scope.user.username;
+                        $localStorage.marketTokenWithBearerPrefix = 'Bearer ' + response.data.token;
+
+                        $scope.currentUser = $localStorage.marketUsername;
                         $scope.user.username = null;
                         $scope.user.password = null;
                         $scope.authorized = true;
+
                         $scope.fillTable();
+                        $scope.updateOrders();
+                        $scope.showCart();
+
                     }
                 }, function errorCallback(response) {
                     window.alert("Error");
                 });
         };
 
+$scope.createOrder = function (address) {
+        $http.post(contextPath + '/api/v1/order/createOrder', address)
+            .then(function successCallback(response) {
+                $scope.showCart();
+                $scope.updateOrders();
+             }, function errorCallback(response) {
+                    window.alert("Error");
+            });
+    }
 
+$scope.updateOrders = function () {
+        $http.get(contextPath + '/api/v1/order/allOrders')
+            .then(function (response) {
+                $scope.Orders = response.data;
+
+            });
+    }
+
+$scope.logout = function () {
+        $http.get(contextPath + '/logout')
+        $http.defaults.headers.common.Authorization = null;
+        delete $localStorage.marketUsername;
+        delete $localStorage.marketTokenWithBearerPrefix;
+        $scope.authorized = false;
+    }
+
+    $scope.registerNewUser = function () {
+            if($scope.newUser.password == $scope.repeatPassword) {
+                $http.post(contextPath + '/addUser', $scope.newUser)
+                .then(function successCallback(response) {
+                        $scope.user = new Object();
+                        $scope.user.username = $scope.newUser.username;
+                        $scope.user.password = $scope.newUser.password;
+                        $scope.newUser = null;
+                        $scope.repeatPassword = null;
+                        $scope.tryToAuth();
+                }, function errorCallback(response) {
+                    window.alert("Error");
+                });
+            } else {
+                window.alert("Error");
+            }
+        };
+
+     if ($localStorage.marketUsername) {
+                 $http.defaults.headers.common.Authorization = $localStorage.marketTokenWithBearerPrefix;
+                 $scope.currentUser = $localStorage.marketUsername;
+                 $scope.fillTable();
+                 $scope.updateOrders();
+                 $scope.showCart();
+                 $scope.authorized = true;
+             }
+    
 });
