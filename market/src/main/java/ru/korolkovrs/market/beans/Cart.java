@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.OrderItem;
 import ru.korolkovrs.market.repositories.ProductRepository;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@SessionScope
 @RequiredArgsConstructor
 @Data
 public class Cart {
@@ -38,9 +40,22 @@ public class Cart {
         }
         OrderItem orderItem = orderItemService.saveOrUpdateOrderItem(new OrderItem(productRepository.
                 findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " doesn't exist"))));
-//        OrderItem orderItem = new OrderItem(productRepository.findById(id).get());
         items.add(orderItem);
         recalculate();
+    }
+
+    public void deleteProduct(Long id) {
+        for (OrderItem item : items) {
+            if (item.getProduct().getId().equals(id)) {
+                item.decrementQuantity();
+                if (item.getQuantity() == 0) {
+                    items.remove(item);
+                }
+                recalculate();
+                return;
+            }
+        }
+//        items.removeIf(i -> i.getId().equals(id));
     }
 
     public void clearAll() {
