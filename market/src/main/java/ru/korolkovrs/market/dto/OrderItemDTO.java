@@ -6,14 +6,14 @@ import ru.korolkovrs.market.models.OrderItem;
 
 @Data
 @NoArgsConstructor
-public class OrderItemDto {
+public class OrderItemDTO {
     private Long productId;
     private String productTitle;
     private Integer quantity;
     private Integer price;
     private Integer pricePerProduct;
 
-    public OrderItemDto(OrderItem orderItem) {
+    public OrderItemDTO(OrderItem orderItem) {
         this.productTitle = orderItem.getProduct().getTitle();
         this.quantity = orderItem.getQuantity();
         this.price = orderItem.getPrice();

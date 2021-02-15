@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <script src="index.js"></script>
 </head>
 
@@ -26,19 +27,32 @@
             <input type="password" ng-model="user.password" id="inputPassword" class="form-control" placeholder="Пароль"
                    style="margin-bottom: 10px;" required="">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+
+        <form class="form-signin" ng-submit="registerNewUser()" style="max-width: 350px; padding: 15px; margin: 0 auto;">
+            <h1 class="h3 mb-3 font-weight-normal">Зарегистрироваться</h1>
+            <label for="inputUsername" class="sr-only">Имя пользователя</label>
+            <input type="text" ng-model="newUser.username" id="inputNewUsername" class="form-control"
+                   placeholder="Имя пользователя" style="margin-bottom: 10px;" required="">
+            <label for="inputEmail" class="sr-only">Имя пользователя</label>
+            <input type="text" ng-model="newUser.email" id="inputEmail" class="form-control"
+                   placeholder="E-mail" style="margin-bottom: 10px;" required="">
+
+            <label for="inputPassword" class="sr-only">Пароль</label>
+            <input type="password" ng-model="newUser.password" id="inputNewPassword" class="form-control" placeholder="Пароль"
+                   style="margin-bottom: 10px;" required="">
+            <input type="password" ng-model="repeatPassword" id="inputNewRepeatPassword" class="form-control" placeholder="Подтвердите пароль"
+                   style="margin-bottom: 10px;" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
             <p class="mt-5 mb-3 text-muted">© GeekBrains 2021</p>
         </form>
     </div>
 
+
     <div ng-show="authorized">
         <h2>{{'Пользователь: ' + currentUser}}</h2>
-        <td>
-            <button class="btn btn-primary" ng-click="addToCart(p.id)">оформить заказ</button>
-        </td>
-<!--        <tr>-->
-<!--        <td ng-show="Cart.items.length != 0">{{'В вашей корзине ' + Cart.items.length + ' позиций на общую сумму ' + Cart.totalPrice + ' рублей'}}</td>-->
-    </div>
-
+        <button class="btn btn-danger" ng-click="logout()">Выйти</button>
+        <br>
     <h3>Фильтр</h3>
     <form novalidate ng-submit="fillTable()">
         <div class="form-group row">
@@ -93,36 +107,65 @@
         </ul>
     </nav>
 
-<!--    <span>Страница {{currentPage}} из {{pageCounter}}</span>-->
+    <div>
+        <br> <h3>Корзина</h3>
+        <table class="table table-hover" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <td>id</td>
+                <td>Название</td>
+                <td>Количество</td>
+                <td>Цена</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in Cart.items">
+                <td>{{item.productId}}</td>
+                <td>{{item.productTitle}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="decProduct(item.productId)">-</button>
+                    {{item.quantity}}
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="addToCart(item.productId)">+</button>
+                </td>
+                <td>{{item.quantity + ' x ' + item.pricePerProduct + ' = ' + item.price}}</td>
+            </tr>
 
-    <br> <h3>Корзина</h3>
-    <table class="table table-hover" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <td>id</td>
-            <td>Название</td>
-            <td>Количество</td>
-            <td>Цена</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in Cart.items">
-            <td>{{item.productId}}</td>
-            <td>{{item.productTitle}}</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm" ng-click="decProduct(item.productId)">-</button>
-                {{item.quantity}}
-                <button type="button" class="btn btn-primary btn-sm" ng-click="addToCart(item.productId)">+</button>
-            </td>
-            <td>{{item.quantity + ' x ' + item.pricePerProduct + ' = ' + item.price}}</td>
-        </tr>
+            <td>Итого</td>
+            <td></td>
+            <td>{{Cart.totalPrice}}</td>
+            </tbody>
+        </table>
+        <button class="btn btn-danger" ng-click="clearCart()">Очистить корзину</button>
 
-        <td>Итого</td>
-        <td></td>
-        <td>{{Cart.totalPrice}}</td>
-        </tbody>
-    </table>
-    <button class="btn btn-danger" ng-click="clearCart()">Очистить корзину</button>
+        <form>
+            <div class="form-group">
+                <label for="deliveryAddress">Delivery address</label>
+                <input type="text" class="form-control" id="deliveryAddress" ng-model="address" placeholder="Enter delivery address">
+            </div>
+            <button class="btn btn-primary" ng-click="createOrder(address)" ng-show="authorized">Оформить заказ</button>
+        </form>
+    </div>
+
+    <div ng-show="authorized">
+        <br>
+        <h3>Заказы</h3>
+        <table class="table table-hover" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <td>Название</td>
+                <td>Цена</td>
+                <td>Адрес доставки</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="o in Orders">
+                <td>{{o.id}}</td>
+                <td>{{o.totalPrice}}</td>
+                <td>{{o.address}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <br> <h3>Добавить новый товар</h3>
     <form novalidate ng-submit="submitCreateNewProduct()">
@@ -138,6 +181,7 @@
             <button class="btn btn-success" type="submit">Сохранить</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>
