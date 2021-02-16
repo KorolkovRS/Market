@@ -1,7 +1,7 @@
 package ru.korolkovrs.market.services;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -38,7 +39,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User addUser(User user) {
-        if (userRepository.findByUsername(user.getUsername()).isEmpty()) {
+        if (!userRepository.existsByUsernameOrEmail(user.getUsername(), user.getEmail())) {
             String rawPassword = user.getPassword();
             user.setPassword(bCryptPasswordEncoder.encode(rawPassword));
             user.setRoles(new ArrayList<>());

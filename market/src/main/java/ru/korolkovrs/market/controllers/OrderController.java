@@ -37,9 +37,4 @@ public class OrderController {
         List<OrderDto> orderDtoList = orderService.findAllByUsername(username);
         return orderDtoList;
     }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleException(IllegalArgumentException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
 }
