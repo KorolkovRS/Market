@@ -28,6 +28,14 @@ create table products (
     updated_at timestamp default current_timestamp
    );
 
+create table addresses
+(
+    id bigserial primary key,
+    title varchar(255) not null unique,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
+);
+
 create table orders
 (
     id bigserial primary key,
@@ -35,7 +43,8 @@ create table orders
     total_price int,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp,
-    address varchar(255)
+--    address varchar(255)
+    address_id bigserial references addresses(id)
 );
 
 create table order_items
@@ -48,6 +57,13 @@ create table order_items
     price_per_product int,
     FOREIGN KEY (product_id)  REFERENCES products (id),
     FOREIGN KEY (order_id)  REFERENCES orders (id)
+);
+
+create table users_addresses
+(
+    user_id bigint not null references users (id),
+    address_id bigint not null references addresses (id),
+    primary key (user_id, address_id)
 );
 
 
@@ -95,8 +111,18 @@ insert into products(title, price) values
   (1, 1),
   (2, 2);
 
---
--- insert into cart(productId, count) values
---    (3, 1),
---    (5, 6),
---    (10, 3);
+  insert into addresses (title)
+  values
+  ('Moscow'),
+  ('Ottawa'),
+  ('Berlin'),
+  ('London'),
+  ('Rim');
+
+  insert into users_addresses (user_id, address_id)
+  values
+  (1, 1),
+  (1, 2),
+  (1, 4),
+  (2, 1),
+  (2, 5);

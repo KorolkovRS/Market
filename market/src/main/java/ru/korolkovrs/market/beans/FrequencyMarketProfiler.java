@@ -32,20 +32,11 @@ public class FrequencyMarketProfiler {
     public void methodFrequencyProfiling(JoinPoint joinPoint) {
         log.debug("before profiling...");
         String methodName = joinPoint.getSignature().toString();
-        int value;
-        if (frequencyMap.containsKey(methodName)) {
-            value = frequencyMap.get(methodName);
-            frequencyMap.put(methodName, ++value);
-        } else {
-            value = 1;
-            frequencyMap.put(methodName, value);
-        }
+        frequencyMap.computeIfPresent(methodName, (key, value) -> ++value);
+        frequencyMap.putIfAbsent(methodName, 1);
     }
 
-    public Map<String, Integer> getMethodWithMaxFrequency() {
-        Map<String, Integer> maxFreqMap = new HashMap<>();
-        String maxFreqMethod = Collections.max(frequencyMap.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-        maxFreqMap.put(maxFreqMethod, frequencyMap.get(maxFreqMethod));
-        return maxFreqMap;
+    public Map.Entry<String, Integer> getMethodWithMaxFrequency() {
+        return frequencyMap.entrySet().stream().max(Comparator.comparingInt(Map.Entry::getValue)).get();
     }
 }

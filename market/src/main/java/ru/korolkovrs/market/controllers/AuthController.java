@@ -26,7 +26,7 @@ public class AuthController {
     private final JwtTokenUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/auth")
+    @PostMapping("/api/v1/authenticate")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -36,12 +36,5 @@ public class AuthController {
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
-    }
-
-    @PostMapping("/addUser")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserDto addUser(@RequestBody User user) {
-        log.debug(user.getUsername(), user.getPassword());
-        return new UserDto(userService.addUser(user));
     }
 }

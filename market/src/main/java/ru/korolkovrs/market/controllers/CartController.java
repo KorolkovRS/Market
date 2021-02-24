@@ -9,7 +9,7 @@ import ru.korolkovrs.market.beans.Cart;
 import ru.korolkovrs.market.dto.CartDTO;
 
 @RestController
-@RequestMapping("/api/v1/carts")
+@RequestMapping("/api/v1/auth/carts")
 @RequiredArgsConstructor
 public class CartController {
     private final Cart cart;
