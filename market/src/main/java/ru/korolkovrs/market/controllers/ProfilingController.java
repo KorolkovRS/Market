@@ -10,19 +10,19 @@ import ru.korolkovrs.market.beans.FrequencyMarketProfiler;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/profiling")
+@RequestMapping("/api/v1/profiling")
 @RequiredArgsConstructor
 public class ProfilingController {
     private final FrequencyMarketProfiler marketProfiler;
     private final DurationMarketProfiler durationMarketProfiler;
 
     @GetMapping("/freq")
-    public Map<String, Integer> getMethodWithMaxFrequency() {
+    public Map.Entry<String, Integer> getMethodWithMaxFrequency() {
         return marketProfiler.getMethodWithMaxFrequency();
     }
 
     @GetMapping("/duration")
-    public Map<String, Double> getControllerWithMaxDuration() {
+    public Map.Entry<String, Double> getControllerWithMaxDuration() {
         return durationMarketProfiler.getControllerWithMaxDurationTime();
     }
 

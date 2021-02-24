@@ -39,10 +39,11 @@ public class Order {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @Column(name = "address")
-    private String address;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
-    public Order(Cart cart, User user, String address) {
+    public Order(Cart cart, User user, Address address) {
         orderItems = new ArrayList<>();
         cart.getItems().stream().forEach((oi -> {
             oi.setOrder(this);

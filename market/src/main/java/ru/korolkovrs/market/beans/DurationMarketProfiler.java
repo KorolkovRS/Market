@@ -35,20 +35,12 @@ public class DurationMarketProfiler {
         long end = System.nanoTime();
         double duration = (end - start) / 1_000_000d;
         String controllerName = proceedingJoinPoint.getThis().getClass().getSuperclass().getCanonicalName();
-
-        if (durationMap.containsKey(controllerName)) {
-            duration += durationMap.get(controllerName);
-            durationMap.put(controllerName, duration);
-        } else {
-            durationMap.put(controllerName, duration);
-        }
+        durationMap.computeIfPresent(controllerName, (key, value) -> value + duration);
+        durationMap.putIfAbsent(controllerName, duration);
         return out;
     }
 
-    public Map<String, Double> getControllerWithMaxDurationTime() {
-        Map<String, Double> maxDurationMap = new HashMap<>();
-        String key = Collections.max(durationMap.entrySet(), Comparator.comparingDouble(Map.Entry::getValue)).getKey();
-        maxDurationMap.put(key, durationMap.get(key));
-        return maxDurationMap;
+    public Map.Entry<String, Double> getControllerWithMaxDurationTime() {
+        return durationMap.entrySet().stream().max(Comparator.comparingDouble(Map.Entry::getValue)).get();
     }
 }
