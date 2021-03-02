@@ -16,13 +16,13 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:Market" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e133341-4f26-4d60-8e0f-60a38b2137dc" name="Default Changelist" comment="add hw lesson 1" />
+    <list default="true" id="7e133341-4f26-4d60-8e0f-60a38b2137dc" name="Default Changelist" comment="Add homework 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -60,6 +61,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.korolkovrs.market.controllers" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programs\Java\Market-dev\Market-dev\market\src\main\resources" />
     </key>
@@ -91,6 +95,28 @@
       <option name="presentableId" value="Default" />
       <updated>1612270311860</updated>
     </task>
+    <task id="LOCAL-00001" summary="Добавлена таблица заказов">
+      <created>1612728170490</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612728170490</updated>
+    </task>
+    <task id="LOCAL-00002" summary="-Добавлена функция добавдения адреса доставки&#10;-Добавлено шифрование пароля при регистрации пользователя">
+      <created>1613065690449</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613065690450</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add homework 2">
+      <created>1613068648096</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613068648096</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,10 +129,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add hw lesson 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="add hw lesson 1" />
+    <MESSAGE value="Добавлена таблица заказов" />
+    <MESSAGE value="-Добавлена функция добавдения адреса доставки&#10;-Добавлено шифрование пароля при регистрации пользователя" />
+    <MESSAGE value="Add homework 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add homework 2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="0" key="#Project_Structure" timestamp="1612373974621">
@@ -117,69 +147,76 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="285" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1612354087056" />
-    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1612464197795">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612464197795" />
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1612351139710" />
-    <state width="1877" height="161" key="GridCell.Tab.0.bottom" timestamp="1612518754985">
+    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613043685089">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612464200496" />
-    <state width="1877" height="161" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612518754985" />
-    <state width="1877" height="161" key="GridCell.Tab.0.center" timestamp="1612518754985">
+    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613043685089" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1613041058655">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612464200495" />
-    <state width="1877" height="161" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612518754985" />
-    <state width="1877" height="161" key="GridCell.Tab.0.left" timestamp="1612518754985">
+    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612892112003" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1613041058655" />
+    <state width="1877" height="208" key="GridCell.Tab.0.bottom" timestamp="1613481799438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612464200495" />
-    <state width="1877" height="161" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612518754985" />
-    <state width="1877" height="161" key="GridCell.Tab.0.right" timestamp="1612518754985">
+    <state width="1493" height="198" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1613154144909" />
+    <state width="1877" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
+    <state width="1877" height="208" key="GridCell.Tab.0.center" timestamp="1613481799438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612464200495" />
-    <state width="1877" height="161" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612518754985" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1612464200483">
+    <state width="1493" height="198" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1613154144909" />
+    <state width="1877" height="208" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
+    <state width="1877" height="208" key="GridCell.Tab.0.left" timestamp="1613481799438">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1613154144909" />
+    <state width="1877" height="208" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
+    <state width="1877" height="208" key="GridCell.Tab.0.right" timestamp="1613481799438">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1493" height="198" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1613154144909" />
+    <state width="1877" height="208" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1612845287312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612464200483" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1612464200482">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612845287312" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1612845287312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1612464200482" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1612464200482">
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1612845287312" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1612845287311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1612464200482" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1612464200482">
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1612845287311" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1612845287312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1612464200482" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1612845287312" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1613068653021">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1613068653021" />
     <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1612374166040">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1612374166040" />
+    <state x="431" y="145" key="search.everywhere.popup" timestamp="1613065574076">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1613065574076" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/AuthController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/CartController.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/AuthController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/AuthController.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/beans/Cart.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
