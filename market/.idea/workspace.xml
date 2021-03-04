@@ -25,20 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e133341-4f26-4d60-8e0f-60a38b2137dc" name="Default Changelist" comment="Пользователь может сохранть адреса доставки">
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/controllers/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/repositories/AddressRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/repositories/RoleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/beans/DurationMarketProfiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/beans/DurationMarketProfiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/beans/FrequencyMarketProfiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/beans/FrequencyMarketProfiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/ProfilingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/controllers/ProfilingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/beans/DurationMarketProfiler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/beans/DurationMarketProfiler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/beans/FrequencyMarketProfiler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/beans/FrequencyMarketProfiler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/controllers/ProfilingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/controllers/ProfilingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/models/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/models/Address.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/models/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/korolkovrs/market/models/Order.class" afterDir="false" />
-    </list>
+    <list default="true" id="7e133341-4f26-4d60-8e0f-60a38b2137dc" name="Default Changelist" comment="Пользователь может сохранть адреса доставки" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +45,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -71,17 +58,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Java/JavaRushTasks" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/ru/korolkovrs/market/soap" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.capture" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="ru.korolkovrs.market.controllers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Programs\GeekBrains\Market\market\src\main\java\ru\korolkovrs\market\soap" />
       <recent name="D:\Programs\Java\Market-dev\Market-dev\market\src\main\resources" />
     </key>
   </component>
@@ -212,30 +201,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613043685089" />
-    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1614619583348">
+    <state x="592" y="217" key="FileChooserDialogImpl" timestamp="1614879488320">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614619583348" />
+    <state x="592" y="217" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614879488320" />
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1613041058655" />
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1614524029929">
+    <state width="796" height="211" key="GridCell.Tab.0.bottom" timestamp="1614881983553">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614524029929" />
+    <state width="796" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614881983553" />
     <state width="1877" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1614524029929">
+    <state width="796" height="211" key="GridCell.Tab.0.center" timestamp="1614881983553">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614524029929" />
+    <state width="796" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614881983553" />
     <state width="1877" height="208" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1614524029928">
+    <state width="796" height="211" key="GridCell.Tab.0.left" timestamp="1614881983552">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614524029928" />
+    <state width="796" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614881983552" />
     <state width="1877" height="208" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1614524029929">
+    <state width="796" height="211" key="GridCell.Tab.0.right" timestamp="1614881983553">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614524029929" />
+    <state width="796" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614881983553" />
     <state width="1877" height="208" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1613481799438" />
     <state width="1493" height="361" key="GridCell.Tab.1.bottom" timestamp="1614445054995">
       <screen x="0" y="0" width="1536" height="824" />
@@ -253,10 +242,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="361" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1614445054995" />
-    <state x="410" y="51" key="SettingsEditor" timestamp="1614440423805">
+    <state x="410" y="51" key="SettingsEditor" timestamp="1614879492046">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="410" y="51" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614440423805" />
+    <state x="410" y="51" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1614879492046" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1614446187006">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

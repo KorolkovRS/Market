@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.korolkovrs.market.dto.ProductDTO;
+import ru.korolkovrs.market.dto.ProductDto;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    public Product(ProductDTO productDTO) {
+    public Product(ProductDto productDTO) {
         id = productDTO.getId();
         title = productDTO.getTitle();
         price = productDTO.getPrice();
