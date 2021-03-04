@@ -12,6 +12,7 @@ import ru.korolkovrs.market.repositories.ProductRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,9 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
+    public List<ru.korolkovrs.market.soap.Product> getAllProducts() {
+        return productRepository.findAll().stream().map(ru.korolkovrs.market.soap.Product::new).collect(Collectors.toList());
+    }
 
     public Optional<ProductDTO> getProductById(Long id) {
         return productRepository.findById(id).map(ProductDTO::new);
@@ -40,5 +44,4 @@ public class ProductService {
     public Optional<Product> findProductsById(Long id) {
         return productRepository.findById(id);
     }
-
 }
