@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.korolkovrs.market.dto.OrderDto;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
+import ru.korolkovrs.market.models.Address;
 import ru.korolkovrs.market.models.User;
 import ru.korolkovrs.market.services.OrderService;
 import ru.korolkovrs.market.services.UserService;
@@ -17,18 +18,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/order")
+@RequestMapping("/api/v1/auth/order")
 @Slf4j
 public class OrderController {
     private final OrderService orderService;
     private final UserService userService;
 
     @PostMapping("/createOrder")
-    public OrderDto createOrder(Principal principal, @RequestBody String address) {
+    public OrderDto createOrder(Principal principal, @RequestBody String addressStr) {
         String username = principal.getName();
-        User user = userService.findByUsername(username).orElseThrow(
-                () -> new ResourceNotFoundException(String.format("User %s not found", username)));
-        return new OrderDto(orderService.saveOrder(user, address));
+        log.debug(addressStr);
+        Address address = new Address(addressStr);
+        return new OrderDto(orderService.saveOrder(username, address));
     }
 
     @GetMapping("/allOrders")

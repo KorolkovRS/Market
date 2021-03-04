@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html ng-app="app">
+<html ng-app="app" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -107,7 +107,7 @@
         </ul>
     </nav>
 
-    <div>
+    <br>
         <br> <h3>Корзина</h3>
         <table class="table table-hover" cellpadding="0" cellspacing="0">
             <thead>
@@ -138,9 +138,14 @@
         <button class="btn btn-danger" ng-click="clearCart()">Очистить корзину</button>
 
         <form>
+            <br>
             <div class="form-group">
                 <label for="deliveryAddress">Delivery address</label>
-                <input type="text" class="form-control" id="deliveryAddress" ng-model="address" placeholder="Enter delivery address">
+
+                <input name="address" list="addresses" ng-model="address" id="deliveryAddress"/>
+                <datalist id="addresses">
+                    <option ng-repeat="u in UserInfo.addresses">{{u}} </option>
+                </datalist>
             </div>
             <button class="btn btn-primary" ng-click="createOrder(address)" ng-show="authorized">Оформить заказ</button>
         </form>

@@ -13,7 +13,7 @@ import ru.korolkovrs.market.services.ProductService;
 
 
 @RestController
-@RequestMapping("api/v1/products")
+@RequestMapping("/api/v1/auth/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
@@ -50,7 +50,7 @@ public class ProductController {
         return new ProductDTO(productService.saveOrUpdate(product));
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteProductById(@PathVariable Long id) {
         productService.deleteProductById(id);
     }
