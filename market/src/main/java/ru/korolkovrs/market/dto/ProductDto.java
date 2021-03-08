@@ -6,12 +6,12 @@ import ru.korolkovrs.market.models.Product;
 
 @Data
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductDto {
     private Long id;
     private String title;
     private int price;
 
-    public ProductDTO(Product p) {
+    public ProductDto(Product p) {
         id = p.getId();
         title = p.getTitle();
         price = p.getPrice();
