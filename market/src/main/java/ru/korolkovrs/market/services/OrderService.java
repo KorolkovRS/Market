@@ -4,19 +4,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.korolkovrs.market.beans.Cart;
 import ru.korolkovrs.market.dto.OrderDto;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.Address;
+import ru.korolkovrs.market.models.Cart;
 import ru.korolkovrs.market.models.Order;
 import ru.korolkovrs.market.models.User;
 import ru.korolkovrs.market.repositories.AddressRepository;
 import ru.korolkovrs.market.repositories.OrderRepository;
 import ru.korolkovrs.market.repositories.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,11 +24,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final AddressRepository addressRepository;
     private final UserService userService;
-    private final Cart cart;
+    private final CartService cartService;
 
     @Transactional
-    public Order saveOrder(String username, Address address) {
-        if (cart.getItems().isEmpty()) {
+    public Order saveOrder(UUID uuid, String username, Address address) {
+        Cart cart = cartService.findById(uuid).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        if (cart.getCartItems().isEmpty()) {
             throw new ResourceNotFoundException("Empty cart");
         }
 
@@ -48,9 +47,13 @@ public class OrderService {
 
         Order order = new Order(cart, user, address);
         order = orderRepository.save(order);
-        cart.clearAll();
         log.info(user.getUsername());
+        cart.clear();
         return order;
+    }
+
+    public Optional<Order> findById(Long id) {
+        return orderRepository.findById(id);
     }
 
     public List<OrderDto> findAllByUsername(String username) {

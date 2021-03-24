@@ -13,23 +13,23 @@ import ru.korolkovrs.market.services.UserService;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/users/addUser")
+    @PostMapping("/addUser")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto addUser(@RequestBody User user) {
 //        log.debug(user.getPassword());
         return new UserDto(userService.addUser(user));
     }
 
-    @PostMapping("/auth/users/addAddress")
+    @PostMapping("/addAddress")
     public UserDto addAddress(@RequestBody Long id, @RequestBody Address address) {
         return new UserDto(userService.updateUser(id, address));
     }
 
-    @PostMapping("/auth/users/userInfo")
+    @PostMapping("/userInfo")
     public UserDto getUserInfo(@RequestBody String username) {
         log.info(username);
         return userService.getUserById(username).orElseThrow(() -> new ResourceNotFoundException("User " + username + " not exist"));

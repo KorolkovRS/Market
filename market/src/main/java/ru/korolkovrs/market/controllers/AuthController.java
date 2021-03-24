@@ -2,6 +2,7 @@ package ru.korolkovrs.market.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,7 @@ import ru.korolkovrs.market.dto.UserDto;
 import ru.korolkovrs.market.exception_handlers.MarketError;
 import ru.korolkovrs.market.exception_handlers.ResourceNotFoundException;
 import ru.korolkovrs.market.models.User;
+import ru.korolkovrs.market.services.CartService;
 import ru.korolkovrs.market.services.UserService;
 
 @RestController
@@ -25,8 +27,9 @@ public class AuthController {
     private final UserService userService;
     private final JwtTokenUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
+    private final CartService cartService;
 
-    @PostMapping("/api/v1/authenticate")
+    @PostMapping("/auth")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -35,6 +38,8 @@ public class AuthController {
         }
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails);
+        cartService.getCartForUser(authRequest.getUsername(), authRequest.getCartId());
+        log.info(token);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 }

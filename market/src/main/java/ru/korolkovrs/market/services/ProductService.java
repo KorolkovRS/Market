@@ -28,8 +28,8 @@ public class ProductService {
         return productRepository.findAll().stream().map(ru.korolkovrs.market.soap.Product::new).collect(Collectors.toList());
     }
 
-    public Optional<ProductDto> getProductById(Long id) {
-        return productRepository.findById(id).map(ProductDto::new);
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id);
     }
 
     public Product saveOrUpdate(Product product) {
@@ -41,7 +41,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Optional<Product> findProductsById(Long id) {
+    public Optional<Product> findProductById(Long id) {
         return productRepository.findById(id);
     }
 }

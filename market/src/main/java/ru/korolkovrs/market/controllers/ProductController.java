@@ -13,7 +13,7 @@ import ru.korolkovrs.market.services.ProductService;
 
 
 @RestController
-@RequestMapping("/api/v1/auth/products")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
@@ -32,8 +32,8 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDto getProductById(@PathVariable Long id) {
-        return productService.getProductById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Product with id " + id + " doesn't exist"));
+        return new ProductDto(productService.getProductById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product with id " + id + " doesn't exist")));
     }
 
     @PostMapping
