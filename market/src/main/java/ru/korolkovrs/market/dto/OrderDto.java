@@ -1,10 +1,12 @@
 package ru.korolkovrs.market.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.korolkovrs.market.models.Address;
 import ru.korolkovrs.market.models.Order;
 
 @Data
+@NoArgsConstructor
 public class OrderDto {
     private Long id;
     private String username;
