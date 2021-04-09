@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import ru.korolkovrs.market.beans.Cart;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -45,12 +44,12 @@ public class Order {
 
     public Order(Cart cart, User user, Address address) {
         orderItems = new ArrayList<>();
-        cart.getItems().stream().forEach((oi -> {
-            oi.setOrder(this);
-            orderItems.add(oi);
-        }));
+//        cart.getCartItems().stream().forEach((oi -> {
+//            oi.setOrder(this);
+//            orderItems.add(oi);
+//        }));
         this.user = user;
-        this.totalPrice = cart.getTotalPrice();
+//        this.totalPrice = cart.getTotalPrice();
         this.address = address;
     }
 }
